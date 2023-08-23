@@ -1,87 +1,25 @@
-const fs = require('fs');
-const archivo = './Productos.json';
+const express = require('express');
+const ProductManager = require('./ProductManager');
+const productManager = new ProductManager();
 
-class ProductManager {
-    static id = 1;
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-    async crearProductos (titulo, descripcion, precio, rutaImagen, sku, stock) {
-        const productos = {
-            id: ProductManager.id++,
-            titulo,
-            descripcion,
-            precio,
-            rutaImagen,
-            sku,
-            stock,
-        };
-        try{
-            if(!fs.existsSync(archivo)){
-                const listaVacia = [];
-                listaVacia.push(productos);
-                
-                await fs.promises.writeFile(
-                    archivo,
-                    JSON.stringify(listaVacia, null, '\t')
-                );
-            } else {
-                const contenidoObj = await this.consultarProductos();
-                contenidoObj.push(productos);
+app.get('/productos', async (req, res)=>{
+    const limit = req.query.limit;
+    const productos = await productManager.getProducts();
 
-                await fs.promises.writeFile(
-                    archivo,
-                    JSON.stringify(contenidoObj, null, '\t')
-                );
-            }
-        } catch (error){
-            console.log(error);
-        }
+    if(limit){
+        return res.send(productos.slice(0, limit));
     }
 
-    async consultarProductos(){
-        const contenido = await fs.promises.readFile(archivo, 'utf-8');
-        const contenidoObj = JSON.parse(contenido);
-        return contenidoObj;
-    }
+    res.send(productos);
+});
 
-    async eliminarProducto(id){
-        const productos = await this.consultarProductos();
-        const productosSinId = productos.filter((productos)=> productos.id != id);
-        await fs.promises.writeFile(
-            archivo,
-            JSON.stringify(productosSinId, null, '\t')
-        );
-    }
+app.get('/productos/:pid', async (req, res) => {
+    const productoId = parseInt(req.params.productoId, 10);
+    const producto = await productManager.buscarPorId(productoId);
 
-    async buscarPorId(id){
-        const productos = await this.consultarProductos();
-        const productoBuscado = productos.find((productos)=> productos.id == id);
-        if(productoBuscado === undefined){
-            console.log('El ID que buscas no existe.')
-        }else{
-            return productoBuscado;
-        }
-    }
-}
-
-const funcionAsync = async () => {
-    const productManager = new ProductManager();
-    await productManager.crearProductos('Queso', 'Brie', 500, 'urlImagen', 12, 10);
-    await productManager.crearProductos('Fideos', 'Lucchetti', 300, 'urlImagen', 9, 20);
-    await productManager.crearProductos('Cerveza', 'Imperial', 600, 'urlImagen', 4, 12);   
-    
-    //ELIMINAR PRODUCTO POR ID
-    await productManager.eliminarProducto(1);
-
-    //LISTA DE PRODUCTOS
-    const listaProductos = productManager
-    .consultarProductos()
-    .then((listaProductos) => console.log(listaProductos));
-
-    //BUSCAR PRODUCTO POR ID
-    const buscadoPorId = productManager
-    .buscarPorId(2)
-    .then((buscadoPorId) => console.log(buscadoPorId));
-
-};
-
-funcionAsync();
+    res.send(producto);
+}); 
