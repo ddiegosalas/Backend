@@ -1,8 +1,9 @@
 const express = require('express');
-const ProductManager = require('./ProductManager');
+const ProductManager = require('./ProductManager.js');
 const productManager = new ProductManager();
 
 const app = express();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,3 +24,5 @@ app.get('/productos/:pid', async (req, res) => {
 
     res.send(producto);
 }); 
+
+app.listen(2020, () => console.log('Diego'));

@@ -81,9 +81,9 @@ const funcionAsync = async () => {
 
     //BUSCAR PRODUCTO POR ID
     const buscadoPorId = productManager
-    .buscarPorId(2)
+    buscarPorId(2)
     .then((buscadoPorId) => console.log(buscadoPorId));
 
 };
 
-funcionAsync();
+//funcionAsync();

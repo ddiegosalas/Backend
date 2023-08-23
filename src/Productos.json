@@ -1,0 +1,29 @@
+[
+	{
+		"id": 1,
+		"titulo": "Queso",
+		"descripcion": "Brie",
+		"precio": 500,
+		"rutaImagen": "urlImagen",
+		"sku": 12,
+		"stock": 10
+	},
+	{
+		"id": 2,
+		"titulo": "Fideos",
+		"descripcion": "Lucchetti",
+		"precio": 300,
+		"rutaImagen": "urlImagen",
+		"sku": 9,
+		"stock": 20
+	},
+	{
+		"id": 3,
+		"titulo": "Cerveza",
+		"descripcion": "Imperial",
+		"precio": 600,
+		"rutaImagen": "urlImagen",
+		"sku": 4,
+		"stock": 12
+	}
+]
