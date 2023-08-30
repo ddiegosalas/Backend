@@ -1,3 +1,7 @@
+import { Express } from 'express';
+import userRouter from './Routes/userRouter.js';
+import productsRouter from './Routes/productsRouter.js';
+
 const express = require('express');
 const ProductManager = require('./ProductManager.js');
 const productManager = new ProductManager();
@@ -6,6 +10,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.listen(8181, () => console.log('Diego'));
 
 app.get('/productos', async (req, res)=>{
     const limit = req.query.limit;
@@ -19,10 +25,16 @@ app.get('/productos', async (req, res)=>{
 });
 
 app.get('/productos/:pid', async (req, res) => {
-    const productoId = parseInt(req.params.productoId, 10);
+    const productoId = parseInt(req.params.pid, 10);
     const producto = await productManager.buscarPorId(productoId);
 
-    res.send(producto);
-}); 
+    if(producto === undefined) {
+        return res.status(404).send();
+    }
 
-app.listen(2020, () => console.log('Diego'));
+    res.send(producto);
+});
+
+const usuarios = [];
+
+app.use('/usuario', userRouter);

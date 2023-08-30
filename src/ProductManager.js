@@ -1,5 +1,5 @@
 const fs = require('fs');
-const archivo = './Productos.json';
+const archivo = './src/Productos.json';
 
 class ProductManager {
     static id = 1;
@@ -52,9 +52,9 @@ class ProductManager {
         );
     }
 
-    async buscarPorId(id){
+    async buscarPorId(idBusqueda){
         const productos = await this.getProducts();
-        const productoBuscado = productos.find((productos)=> productos.id == id);
+        const productoBuscado = productos.find(({id})=> id == idBusqueda);
         if(productoBuscado === undefined){
             console.log('El ID que buscas no existe.')
         }else{
@@ -67,23 +67,23 @@ module.exports = ProductManager;
 
 const funcionAsync = async () => {
     const productManager = new ProductManager();
-    await productManager.crearProductos('Queso', 'Brie', 500, 'urlImagen', 12, 10);
-    await productManager.crearProductos('Fideos', 'Lucchetti', 300, 'urlImagen', 9, 20);
-    await productManager.crearProductos('Cerveza', 'Imperial', 600, 'urlImagen', 4, 12);   
+    //await productManager.crearProductos('Queso', 'Brie', 500, 'urlImagen', 12, 10);
+    //await productManager.crearProductos('Fideos', 'Lucchetti', 300, 'urlImagen', 9, 20);
+    //await productManager.crearProductos('Cerveza', 'Imperial', 600, 'urlImagen', 4, 12);   
     
     //ELIMINAR PRODUCTO POR ID
-    await productManager.eliminarProducto(1);
+    //await productManager.eliminarProducto(1);
 
     //LISTA DE PRODUCTOS
-    const listaProductos = productManager
-    .getProducts()
-    .then((listaProductos) => console.log(listaProductos));
+    //const listaProductos = productManager
+    //.getProducts()
+    //.then((listaProductos) => console.log(listaProductos));
 
     //BUSCAR PRODUCTO POR ID
     const buscadoPorId = productManager
-    buscarPorId(2)
+    .buscarPorId(3)
     .then((buscadoPorId) => console.log(buscadoPorId));
 
 };
 
-//funcionAsync();
+funcionAsync();
