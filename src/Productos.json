@@ -1,29 +1,29 @@
 [
 	{
 		"id": 1,
-		"titulo": "Queso",
-		"descripcion": "Brie",
-		"precio": 500,
+		"titulo": "Thriller - Michael Jackson",
+		"descripcion": "Estado VG+.",
+		"precio": 100,
 		"rutaImagen": "urlImagen",
-		"sku": 12,
-		"stock": 10
+		"sku": 22,
+		"stock": 4
 	},
 	{
 		"id": 2,
-		"titulo": "Fideos",
-		"descripcion": "Lucchetti",
+		"titulo": "Live Double Trouble - Stevie Ray Vaughan",
+		"descripcion": "Vinilo doble. Estado VG.",
 		"precio": 300,
 		"rutaImagen": "urlImagen",
 		"sku": 9,
-		"stock": 20
+		"stock": 3
 	},
 	{
 		"id": 3,
-		"titulo": "Cerveza",
-		"descripcion": "Imperial",
-		"precio": 600,
+		"titulo": "Electric Band - Chick Corea",
+		"descripcion": "Estado NM",
+		"precio": 200,
 		"rutaImagen": "urlImagen",
 		"sku": 4,
-		"stock": 12
+		"stock": 1
 	}
 ]

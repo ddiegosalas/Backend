@@ -1,3 +1,5 @@
+import { Router } from 'express';
+const router = Router();
 const fs = require('fs');
 const archivo = './src/Productos.json';
 
@@ -87,3 +89,5 @@ const funcionAsync = async () => {
 };
 
 funcionAsync();
+
+export default router;
