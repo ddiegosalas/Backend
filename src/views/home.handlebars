@@ -1,7 +1,14 @@
-<div>
+<div style="padding: 10px;">
     {{#each productos}}
-        <p>{{this.titulo}}</p>
-        <p>{{this.codigo}}</p>
+        <div class="card" style="width: 250px; padding: 15px; margin: 10px;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body" style="padding: 10px;">
+                <h5 class="card-title">{{this.titulo}}</h5>
+                <h6>${{this.precio}}</h6>
+                <p class="card-text">{{this.descripcion}}</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
     {{/each}}
 </div>
 <script src="/public/js/index.js"></script>

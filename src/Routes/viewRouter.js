@@ -6,7 +6,18 @@ const router = Router();
 router.get('/productos', (req, res) => {
     res.render('home', {
         productos,
-        style: 'index.css'
+    });
+});
+
+router.get('/productosTiempoReal', (req, res) => {
+    res.render('realTimeProducts', {
+        productos,
+    });
+});
+
+router.get('/agregarProducto', (req, res) => {
+    res.render('addProduct',{
+        productos,
     });
 });
 
