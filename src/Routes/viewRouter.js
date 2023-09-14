@@ -4,7 +4,7 @@ import { productos } from './productsRouter.js';
 const router = Router();
 
 router.get('/productos', (req, res) => {
-    res.render('home', {
+    res.render('index', {
         productos,
     });
 });

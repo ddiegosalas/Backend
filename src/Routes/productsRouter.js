@@ -47,6 +47,7 @@ router.post('/nuevo', (req, res) => {
 
     productos.push(producto);
 
+    req.context.socketServer.emit('actualizarProductos', productos);
     res.send();
 })
 

@@ -1,13 +1,4 @@
-<div style="padding: 10px;">
-    {{#each productos}}
-        <div class="card" style="width: 250px; padding: 15px; margin: 10px;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body" style="padding: 10px;">
-                <h5 class="card-title">{{this.titulo}}</h5>
-                <p class="card-text">{{this.descripcion}}</p>
-                <a href="#" class="btn btn-primary">Agregar</a>
-            </div>
-        </div>
-    {{/each}}
-</div>
-<script src="/public/js/index.js"></script>
+<div id="productos"></div> 
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTime.js"></script>
