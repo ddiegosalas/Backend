@@ -6,9 +6,9 @@ const router = Router();
 const productManager = new ProductManager();
 
 router.post('/', uploader.single('file'), async (req, res) =>{
-    const {titulo, descripcion, precio, codigo} = req.body;
+    const {instrumento, marca, modelo, precio, codigo} = req.body;
     const imagen = req.file.originalname;
-    const producto = await productManager.create(titulo, descripcion, precio, codigo, imagen);
+    const producto = await productManager.create(instrumento, marca, modelo, precio, codigo, imagen);
     res.status(200).send(producto);
 });
 

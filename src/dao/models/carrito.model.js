@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
 
-const productCollection = "productos";
+const carritoCollection = "carrito";
 
-const productSchema = new mongoose.Schema({
+const carritoSchema = new mongoose.Schema({
     instrumento: {
         type: String,
         required: true
@@ -16,11 +15,11 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    precio: {
+    cantidad: {
         type: Number,
         required: true
     },
-    codigo: {
+    precio: {
         type: Number,
         required: true
     },
@@ -30,6 +29,5 @@ const productSchema = new mongoose.Schema({
     },
 });
 
-productSchema.plugin(mongoosePaginate);
-const productModel = mongoose.model(productCollection, productSchema);
-export {productModel};
+const carritoModel = mongoose.model(carritoCollection, carritoSchema);
+export {carritoModel};

@@ -1,10 +1,11 @@
 import { productModel } from "../models/producto.model.js";
 
 class ProductManager{
-    async create(titulo, descripcion, precio, codigo, imagen){
+    async create(instrumento, marca, modelo, precio, codigo, imagen){
         const producto = await productModel.create({
-            titulo,
-            descripcion,
+            instrumento,
+            marca,
+            modelo,
             precio,
             codigo,
             imagen,
